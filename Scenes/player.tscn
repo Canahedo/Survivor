@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnltq0xquebi1"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_2r2iy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_epbat"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h4d4g"]
+load_path = "res://.godot/imported/character.png-c066f0449ff56664db14f32648c5100d.ctex"
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_2r2iy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_epbat")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_h4d4g")
+region_enabled = true
+region_rect = Rect2(1, 6, 15, 22)
