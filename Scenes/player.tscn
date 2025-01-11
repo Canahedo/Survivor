@@ -528,15 +528,12 @@ height = 20.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_2r2iy")
-max_speed = 200
-accel = 500
-friction = 1000
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_w4365")
 animation = &"walk_up"
-frame_progress = 0.267291
+frame_progress = 0.569638
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
