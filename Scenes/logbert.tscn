@@ -201,8 +201,9 @@ animations = [{
 radius = 2.0
 height = 12.0
 
-[node name="Logbert" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_nkmbn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -214,3 +215,14 @@ animation = &"walk_down"
 visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hh1do")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 15.0
+simplify_path = true
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
