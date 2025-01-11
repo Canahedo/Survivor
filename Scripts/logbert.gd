@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var accel: int = 1000
 @export var friction: int = 1000
 
-@onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@onready var animation = $AnimatedSprite2D
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,8 +18,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var direction = to_local(nav_agent.get_next_path_position()).normalized()
-	velocity += (direction * accel * delta)
+	var path_direction = to_local(nav_agent.get_next_path_position()).normalized()
+	velocity += (path_direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
 	move_and_slide()
 	update_animation()
@@ -39,15 +39,15 @@ func _on_timer_timeout():
 
 
 func update_animation():
-	var movement_direction: String
+	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()
 	else:	
 		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: movement_direction = "left"
-			elif velocity.x > 0: movement_direction = "right"
+			if velocity.x < 0: animation_direction = "left"
+			elif velocity.x > 0: animation_direction = "right"
 		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: movement_direction = "up"
-			if velocity.y > 0: movement_direction = "down" 
+			if velocity.y < 0: animation_direction = "up"
+			if velocity.y > 0: animation_direction = "down" 
 		if velocity.x != 0 or velocity.y != 0:
-			animation.play("walk_" + movement_direction)
+			animation.play("walk_" + animation_direction)

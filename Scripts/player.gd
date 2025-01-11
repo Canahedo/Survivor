@@ -41,21 +41,21 @@ func player_movement(delta):
 		velocity = velocity.limit_length(max_speed)
 		
 func update_animation():
-	var direction: String
+	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()
 	else:	
 		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: direction = "left"
-			elif velocity.x > 0: direction = "right"
+			if velocity.x < 0: animation_direction = "left"
+			elif velocity.x > 0: animation_direction = "right"
 		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: direction = "up"
-			if velocity.y > 0: direction = "down" 
+			if velocity.y < 0: animation_direction = "up"
+			if velocity.y > 0: animation_direction = "down" 
 		if velocity.x != 0 or velocity.y != 0:
 			if player_is_carrying:
-				animation.play("carry_" + direction)
+				animation.play("carry_" + animation_direction)
 			else:
-				animation.play("walk_" + direction)
+				animation.play("walk_" + animation_direction)
 		
 #func player_attack():
 	#animation.play("attack_down")
