@@ -1099,7 +1099,6 @@ sources/0 = SubResource("TileSetAtlasSource_rs5qj")
 
 [node name="Main" type="Node2D"]
 position = Vector2(9, 9)
-scale = Vector2(3, 3)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-165, -228.25)
@@ -1107,8 +1106,8 @@ tile_map_data = PackedByteArray("AAAIABAAAAAFAAoAAAAJABEAAAAFAAoAAAAKABEAAAAFAAo
 tile_set = SubResource("TileSet_3lveg")
 
 [node name="Player" parent="." instance=ExtResource("2_85uai")]
-position = Vector2(76.5, 31)
+position = Vector2(87.6667, 58)
 collision_mask = 21
 
 [node name="Logbert" parent="." instance=ExtResource("2_iytq5")]
-position = Vector2(149.667, 57.3333)
+position = Vector2(135.667, 49.6667)
