@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxa12jcginjhu"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_hf17e"]
+[ext_resource type="LabelSettings" uid="uid://dsjupabiwik4m" path="res://Resources/ui_text.tres" id="1_t8c22"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hf17e")
+
+[node name="ui_text" type="Node2D" parent="."]
+position = Vector2(20, 20)
+
+[node name="health_text" type="Label" parent="ui_text"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Health:"
+label_settings = ExtResource("1_t8c22")
+
+[node name="score_text" type="Label" parent="ui_text"]
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 43.0
+text = "Score:"
+label_settings = ExtResource("1_t8c22")
+
+[node name="ui_values" type="Node2D" parent="."]
+position = Vector2(75, 20)
+
+[node name="health" type="Label" parent="ui_values"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+label_settings = ExtResource("1_t8c22")
+
+[node name="score" type="Label" parent="ui_values"]
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 43.0
+text = "0"
+label_settings = ExtResource("1_t8c22")
