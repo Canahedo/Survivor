@@ -534,7 +534,7 @@ script = ExtResource("1_2r2iy")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_w4365")
 animation = &"attack_up"
-frame_progress = 0.142708
+frame_progress = 0.279868
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -560,11 +560,5 @@ process_callback = 0
 wait_time = 3.0
 autostart = true
 
-[node name="IFrames" type="Timer" parent="."]
-process_callback = 0
-wait_time = 2.0
-one_shot = true
-
 [connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="timeout" from="IFrames" to="." method="_on_i_frames_timeout"]

@@ -5,22 +5,22 @@ extends CharacterBody2D
 @export var max_speed: int = 125
 @export var accel: int = 1000
 @export var friction: int = 1000
-@export var player_is_carrying: bool = false
 
 
 # Onready
-@onready var animation = $AnimatedSprite2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 
 # Variables
+var player_is_facing: String = "down" # Updated as part of update_animation()
+var player_is_carrying: bool = false
 var player_can_attack: bool = true
-var player_attack_cooldown: float = 3.0
+var player_has_iframes: bool = false
 var input: Vector2 = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Messenger.connect("PLAYER_HURT", _on_area_2d_body_entered)
 	animation.stop()
 	animation.play("walk_down")
 
@@ -34,7 +34,7 @@ func _physics_process(delta) -> void:
 		#player_attack()
 
 
-# Get player input
+# Get directional input from player
 func get_input() -> Vector2:
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
@@ -54,7 +54,7 @@ func player_movement(delta) -> void:
 		velocity = velocity.limit_length(max_speed)
 
 
-# Update the sprite animation based on movement
+# Update the sprite animation based on movement direction
 func update_animation() -> void:
 	var animation_direction: String
 	if velocity.length() == 0:
@@ -66,12 +66,12 @@ func update_animation() -> void:
 		elif abs(velocity.y) > abs(velocity.x):
 			if velocity.y < 0: animation_direction = "up"
 			if velocity.y > 0: animation_direction = "down" 
-		if velocity.x != 0 or velocity.y != 0:
-			if player_is_carrying:
-				animation.play("carry_" + animation_direction)
-			else:
-				animation.play("walk_" + animation_direction)
-
+		player_is_facing = animation_direction
+		if player_is_carrying:
+			animation.play("carry_" + animation_direction)
+		else:
+			animation.play("walk_" + animation_direction)
+				
 
 # Player attack
 #func player_attack():
@@ -82,5 +82,24 @@ func update_animation() -> void:
 
 
 # Hitbox Detection
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	Messenger.PLAYER_HURT.emit()
+func _on_area_2d_body_entered(body) -> void:
+	if body.is_in_group("enemies") and player_has_iframes == false:
+		Messenger.PLAYER_HURT.emit()
+		player_has_iframes = true
+		print("IFrames on")
+		$IFrames.start()
+
+
+func _on_attack_cooldown_timeout() -> void:
+	print("Attacking: " + player_is_facing)
+
+
+func _on_i_frames_timeout() -> void:
+	player_has_iframes = false
+	print("IFrames off")
+	
+		
+"""
+Notes and thoughts:
+	Do player_is_facing and animation_direction need to be seperate?
+"""

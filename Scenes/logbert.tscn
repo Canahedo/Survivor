@@ -1,11 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://bgjqpolvelvxu"]
+[gd_scene load_steps=29 format=3 uid="uid://bgjqpolvelvxu"]
 
 [ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_nkmbn"]
 [ext_resource type="Texture2D" uid="uid://6tsyaldvu81u" path="res://Assets/gfx/log.png" id="2_hd1t1"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh1do"]
-radius = 2.0
-height = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7a5s"]
 atlas = ExtResource("2_hd1t1")
@@ -201,19 +197,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_31a06"]
+radius = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3b8p"]
+radius = 6.0
+height = 20.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_nkmbn")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_35juf")
+animation = &"walk_down"
+frame_progress = 0.89754
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_hh1do")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -10)
-sprite_frames = SubResource("SpriteFrames_35juf")
-animation = &"wake"
+shape = SubResource("CircleShape2D_31a06")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 15.0
@@ -223,5 +227,12 @@ simplify_path = true
 process_callback = 0
 wait_time = 0.25
 autostart = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_p3b8p")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 # Exports
 @export var player: CharacterBody2D
-@export var max_speed: int = 125
+@export var max_speed: int = 100
 @export var accel: int = 1000
 @export var friction: int = 1000
 
