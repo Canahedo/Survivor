@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var player_is_carrying: bool = false
 var player_can_attack: bool = true
 var player_attack_cooldown: float = 3.0
-var input = Vector2.ZERO
+var input: Vector2 = Vector2.ZERO
 
 # Start down animation on load
 func _ready():
