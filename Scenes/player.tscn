@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dnltq0xquebi1"]
+[gd_scene load_steps=66 format=3 uid="uid://dnltq0xquebi1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
@@ -522,10 +522,6 @@ animations = [{
 radius = 2.0
 height = 12.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ruht"]
-radius = 6.0
-height = 20.0
-
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_2r2iy")
 
@@ -533,14 +529,9 @@ script = ExtResource("1_2r2iy")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_w4365")
 animation = &"walk_up"
-frame_progress = 0.136783
+frame_progress = 0.1671
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_epbat")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_2ruht")
