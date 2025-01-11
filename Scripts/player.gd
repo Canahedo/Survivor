@@ -39,17 +39,19 @@ func player_movement(delta):
 func update_animation():
 	
 	var direction: String
-	if abs(velocity.x) > abs(velocity.y):
-		if velocity.x < 0: direction = "left"
-		elif velocity.x > 0: direction = "right"
-	elif abs(velocity.y) > abs(velocity.x):
-		if velocity.y < 0: direction = "up"
-		if velocity.y > 0: direction = "down" 
-	
-	if velocity.x != 0 or velocity.y != 0:
-		if player_is_carrying:
-			animation.play("carry_" + direction)
-		else:
-			animation.play("walk_" + direction)
-	else:
+	if velocity.length() == 0:
 		animation.stop()
+	else:	
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x < 0: direction = "left"
+			elif velocity.x > 0: direction = "right"
+		elif abs(velocity.y) > abs(velocity.x):
+			if velocity.y < 0: direction = "up"
+			if velocity.y > 0: direction = "down" 
+		
+		if velocity.x != 0 or velocity.y != 0:
+			if player_is_carrying:
+				animation.play("carry_" + direction)
+			else:
+				animation.play("walk_" + direction)
+		
