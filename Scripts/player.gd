@@ -12,11 +12,11 @@ var player_attack_cooldown: float = 3.0
 var input: Vector2 = Vector2.ZERO
 
 # Start down animation on load
-func _ready():
+func _ready() -> void:
 	animation.stop()
 	animation.play("walk_down")
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	player_movement(delta)
 	move_and_slide()
 	update_animation()
@@ -24,12 +24,12 @@ func _physics_process(delta):
 		#player_attack()
 		
 	
-func get_input():
+func get_input() -> Vector2:
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	return input.normalized()
 	
-func player_movement(delta):
+func player_movement(delta) -> void:
 	input = get_input()
 	if input == Vector2.ZERO:
 		if velocity.length() > (friction * delta):
@@ -40,7 +40,7 @@ func player_movement(delta):
 		velocity += (input * accel * delta)
 		velocity = velocity.limit_length(max_speed)
 		
-func update_animation():
+func update_animation() -> void:
 	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()

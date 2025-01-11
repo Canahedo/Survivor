@@ -7,3 +7,5 @@
 6. Bosses with power ups?
 
 # Normalizing Code
+- animation_movement
+- path_direction

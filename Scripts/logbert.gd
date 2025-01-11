@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	set_physics_process(false)
 	await get_tree().process_frame
 	get_path_to_player()
@@ -17,7 +17,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(delta) -> void:
 	var path_direction = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity += (path_direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
@@ -33,12 +33,12 @@ func get_path_to_player() -> void:
 
 
 # On timeout get a new path to the player
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	get_path_to_player()
 	
 
 
-func update_animation():
+func update_animation() -> void:
 	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()
