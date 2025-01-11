@@ -213,7 +213,7 @@ shape = SubResource("CapsuleShape2D_hh1do")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_35juf")
-animation = &"walk_down"
+animation = &"wake"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 target_desired_distance = 15.0
