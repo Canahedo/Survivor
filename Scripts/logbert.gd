@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var player: Node2D
+@export var player: CharacterBody2D
 @export var max_speed: int = 125
 @export var accel: int = 1000
 @export var friction: int = 1000
@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	velocity += (direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
 	move_and_slide()
-	
 
 
 # Gets player global position and updates target position
