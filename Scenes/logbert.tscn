@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_nkmbn"]
 [ext_resource type="Texture2D" uid="uid://6tsyaldvu81u" path="res://Assets/gfx/log.png" id="2_hd1t1"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hh1do"]
+radius = 2.0
+height = 12.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7a5s"]
 atlas = ExtResource("2_hd1t1")
 region = Rect2(128, 0, 32, 32)
@@ -205,6 +209,10 @@ height = 12.0
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_nkmbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hh1do")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
