@@ -1,13 +1,23 @@
 extends CharacterBody2D
 
-@export var max_speed = 100
-@export var accel = 50
-@export var friction = 50
+@onready var animation = $AnimatedSprite2D
 
+# Properties
+@export var max_speed: int = 125
+@export var accel: int = 1000
+@export var friction: int = 1000
+@export var player_is_carrying: bool = false
 var input = Vector2.ZERO
+
+# Start down animation on load
+func _ready():
+	animation.stop()
+	animation.play("walk_down")
 
 func _physics_process(delta):
 	player_movement(delta)
+	move_and_slide()
+	update_animation()
 	
 func get_input():
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
@@ -25,6 +35,23 @@ func player_movement(delta):
 	else:
 		velocity += (input * accel * delta)
 		velocity = velocity.limit_length(max_speed)
+		
+func update_animation():
 	
-	move_and_slide()
-	
+	var direction: String
+	if velocity.length() == 0:
+		animation.stop()
+	else:	
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x < 0: direction = "left"
+			elif velocity.x > 0: direction = "right"
+		elif abs(velocity.y) > abs(velocity.x):
+			if velocity.y < 0: direction = "up"
+			if velocity.y > 0: direction = "down" 
+		
+		if velocity.x != 0 or velocity.y != 0:
+			if player_is_carrying:
+				animation.play("carry_" + direction)
+			else:
+				animation.play("walk_" + direction)
+		

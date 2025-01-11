@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://ceptnlo4fo0y0"]
+[gd_scene load_steps=6 format=4 uid="uid://ceptnlo4fo0y0"]
 
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_85uai"]
+[ext_resource type="PackedScene" uid="uid://bgjqpolvelvxu" path="res://Scenes/logbert.tscn" id="2_iytq5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ifoqg"]
 load_path = "res://.godot/imported/Overworld.png-2c4a18ea5696618e80dde7cf0c9aeba0.ctex"
@@ -1097,7 +1098,7 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_rs5qj")
 
 [node name="Main" type="Node2D"]
-scale = Vector2(3, 3)
+position = Vector2(9, 9)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-165, -228.25)
@@ -1105,5 +1106,8 @@ tile_map_data = PackedByteArray("AAAIABAAAAAFAAoAAAAJABEAAAAFAAoAAAAKABEAAAAFAAo
 tile_set = SubResource("TileSet_3lveg")
 
 [node name="Player" parent="." instance=ExtResource("2_85uai")]
-position = Vector2(76.5, 31)
+position = Vector2(87.6667, 58)
 collision_mask = 21
+
+[node name="Logbert" parent="." instance=ExtResource("2_iytq5")]
+position = Vector2(135.667, 49.6667)
