@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	velocity += (direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
 	move_and_slide()
+	update_animation()
 
 
 # Gets player global position and updates target position
@@ -34,3 +35,19 @@ func get_path_to_player() -> void:
 # On timeout get a new path to the player
 func _on_timer_timeout():
 	get_path_to_player()
+	
+
+
+func update_animation():
+	var movement_direction: String
+	if velocity.length() == 0:
+		animation.stop()
+	else:	
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x < 0: movement_direction = "left"
+			elif velocity.x > 0: movement_direction = "right"
+		elif abs(velocity.y) > abs(velocity.x):
+			if velocity.y < 0: movement_direction = "up"
+			if velocity.y > 0: movement_direction = "down" 
+		if velocity.x != 0 or velocity.y != 0:
+			animation.play("walk_" + movement_direction)
