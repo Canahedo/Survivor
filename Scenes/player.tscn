@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dnltq0xquebi1"]
+[gd_scene load_steps=68 format=3 uid="uid://dnltq0xquebi1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
@@ -523,6 +523,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pknqd"]
+radius = 6.0
+height = 20.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_2r2iy")
@@ -545,3 +549,12 @@ offset_left = -320.0
 offset_top = -179.0
 offset_right = -320.0
 offset_bottom = -179.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_pknqd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

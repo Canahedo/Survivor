@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
+
+# Exports
 @export var player: CharacterBody2D
 @export var max_speed: int = 125
 @export var accel: int = 1000
 @export var friction: int = 1000
 
+
+# Onready
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,6 +43,7 @@ func _on_timer_timeout() -> void:
 	
 
 
+# Update the sprite animation based on movement
 func update_animation() -> void:
 	var animation_direction: String
 	if velocity.length() == 0:
