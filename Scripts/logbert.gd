@@ -10,17 +10,19 @@ extends CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_physics_process(false)
+	await get_tree().process_frame
 	get_path_to_player()
+	set_physics_process(true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	print(nav_agent.distance_to_target())
 	var direction = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity += (direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
 	move_and_slide()
-	#print(nav_agent.distance_to_target())
+	
 
 
 # Gets player global position and updates target position
