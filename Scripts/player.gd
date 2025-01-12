@@ -31,12 +31,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	if player_is_dead:
-		return
-	player_movement(delta)	
-	if not player_is_attacking:
-		update_animation()
-	move_and_slide()
+	if not player_is_dead:
+		z_index = position.y
+		player_movement(delta)	
+		if not player_is_attacking:
+			update_animation()
+		move_and_slide()
 
 
 # Get directional input from player
