@@ -1132,4 +1132,4 @@ process_callback = 0
 wait_time = 5.0
 autostart = true
 
-[connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
+[connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="." method="_on_logbert_spawn_timer_timeout"]

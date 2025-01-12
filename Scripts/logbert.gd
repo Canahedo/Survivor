@@ -8,7 +8,7 @@ extends CharacterBody2D
 
 
 # Onready
-@onready var player: CharacterBody2D = get_parent().get_node("Player")
+@onready var player: CharacterBody2D = get_node("/root/Main/Player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
