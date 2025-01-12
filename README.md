@@ -5,6 +5,7 @@
 4. Special enemies?
 5. Active vs. Passive?
 6. Bosses with power ups?
+7. Central settings file?
 
 # Normalizing Code
 - animation_movement
