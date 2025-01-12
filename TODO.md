@@ -1,4 +1,9 @@
 TODO:
- - Relative z positions for sprite overlap (based on y value)
- - Game Over and Win states
+
+ - Win states
  - Player upgrades/abilities
+ - Pause / UI
+ - Reset / Restart
+ - Obstacles
+ - Stats
+ - Save states
