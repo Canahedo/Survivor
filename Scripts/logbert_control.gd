@@ -1,6 +1,10 @@
 extends Node2D
 
 
+# Onready
+@onready var logbert_scene: PackedScene = preload("res://Scenes/logbert.tscn")
+
+
 # Variables
 var logbert_respawns: int = 0 # Tracks how many Logberts have spawned
 const logbert_speed_modifier: int = 10 # Controls how quickly the speed increase scales
@@ -17,7 +21,7 @@ func _on_logbert_spawn_timer_timeout():
 
 
 func spawn_logbert():
-	var logbert_instance = PackedScenes.logbert_scene.instantiate()
+	var logbert_instance = logbert_scene.instantiate()
 	logbert_instance.position = Vector2(randi_range(0, 640), randi_range(0, 360))
 	logbert_instance.max_speed += logbert_speed_modifier
 	add_child(logbert_instance)
