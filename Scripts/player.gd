@@ -34,7 +34,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	if not player_is_dead:
-		z_index = position.y
+		z_index = int(position.y)
 		player_movement(delta)	
 		if not player_is_attacking:
 			update_animation()

@@ -8,5 +8,3 @@
 7. Central settings file?
 8. Attatck types/Abilities?
 9. Meta progress?
-
-
