@@ -10,6 +10,13 @@ var score: int = 0
 @onready var health_tracker = $ui_values/health
 @onready var score_tracker =  $ui_values/score
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			if get_tree().paused:
+				get_tree().paused = false
+			else:
+				get_tree().paused = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

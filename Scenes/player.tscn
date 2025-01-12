@@ -549,6 +549,7 @@ shape = SubResource("CircleShape2D_ydfwc")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="UI" parent="Camera2D" instance=ExtResource("3_4nkst")]
+process_mode = 3
 offset_left = -320.0
 offset_top = -179.0
 offset_right = -320.0
