@@ -74,7 +74,7 @@ func update_animation() -> void:
 			animation.play("carry_" + dir_player_facing)
 		else:
 			animation.play("walk_" + dir_player_facing)
-				
+
 
 # Hitbox Detection
 func _on_area_2d_body_entered(body) -> void:
@@ -95,12 +95,13 @@ func _on_attack_cooldown_timeout() -> void:
 	add_child(player_sword_projectile)
 	await animation.animation_finished
 	player_is_attacking = false
-	
+
 
 # Disables IFrames after timeout
 func _on_i_frames_timeout() -> void:
 	player_has_iframes = false
-	
+
+
 # What happens when the player is killed	
 func _on_player_killed():
 	velocity = Vector2.ZERO

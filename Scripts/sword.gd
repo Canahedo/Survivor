@@ -24,14 +24,14 @@ var dir_dict = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+
 	# Selects sprite from sheet based on sprite_selector
 	if sprite_selector > 10:
 		sprite_selector -= 10
 		sprite_y = 16
 	sprite_x = (sprite_selector - 1) * 16
 	sprite_node.region_rect = Rect2(sprite_x, sprite_y, 16, 16)
-	
+
 	# Sets projectile rotation and direction based on dir_player_facing
 	set_rotation_degrees(dir_dict[dir_player_facing][1])
 	projectile_direction = dir_dict[dir_player_facing][0] #.rotated(rotation)
