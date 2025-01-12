@@ -19,6 +19,7 @@ var player_can_attack: bool = true
 var player_is_attacking: bool = false
 var player_is_carrying: bool = false
 var player_has_iframes: bool = false
+var sword_lvl: int = 1
 var input: Vector2 = Vector2.ZERO
 
 
@@ -27,6 +28,7 @@ func _ready() -> void:
 	animation.stop()
 	animation.play("walk_down")
 	Messenger.PLAYER_KILLED.connect(_on_player_killed)
+	Messenger.SWORD_UPGRADED.connect(upgrade_sword)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,6 +93,7 @@ func _on_attack_cooldown_timeout() -> void:
 	player_is_attacking = true
 	var player_sword_projectile = sword_scene.instantiate()
 	player_sword_projectile.dir_player_facing = dir_player_facing
+	player_sword_projectile.sword_lvl = sword_lvl
 	animation.play("attack_" + dir_player_facing)
 	add_child(player_sword_projectile)
 	await animation.animation_finished
@@ -109,3 +112,6 @@ func _on_player_killed():
 	$AttackCooldown.stop()
 	animation.stop()
 	animation.play("player_death")
+	
+func upgrade_sword():
+	sword_lvl = clampi(sword_lvl + 1, 1, 20)

@@ -1,7 +1,7 @@
 extends Area2D
 
 # Exports
-@export_range(1, 20) var sprite_selector: int = 11
+@export_range(1, 20) var sword_lvl: int = 1
 
 
 # Onready
@@ -26,10 +26,10 @@ var dir_dict = {
 func _ready() -> void:
 
 	# Selects sprite from sheet based on sprite_selector
-	if sprite_selector > 10:
-		sprite_selector -= 10
+	if sword_lvl > 10:
+		sword_lvl -= 10
 		sprite_y = 16
-	sprite_x = (sprite_selector - 1) * 16
+	sprite_x = (sword_lvl - 1) * 16
 	sprite_node.region_rect = Rect2(sprite_x, sprite_y, 16, 16)
 
 	# Sets projectile rotation and direction based on dir_player_facing
