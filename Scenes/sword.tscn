@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddk1tufjjkmyn"]
 
-[ext_resource type="Script" path="res://Scripts/sword.gd" id="1_ykqrh"]
+[ext_resource type="Script" path="res://Scripts/Swords/sword.gd" id="1_ykqrh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p5wis"]
 load_path = "res://.godot/imported/swordsprites.png-27e0bd334c5b8bab5e5aec5e96693478.ctex"
