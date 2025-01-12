@@ -213,7 +213,7 @@ script = ExtResource("1_nkmbn")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_35juf")
 animation = &"walk_down"
-frame_progress = 0.619797
+frame_progress = 0.648641
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

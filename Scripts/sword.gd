@@ -6,7 +6,7 @@ extends Area2D
 
 # Onready
 @onready var sprite_node: Sprite2D = $Sprite2D
-@onready var player_is_facing: String
+@onready var dir_player_facing: String
 
 
 # Variables
@@ -32,9 +32,9 @@ func _ready() -> void:
 	sprite_x = (sprite_selector - 1) * 16
 	sprite_node.region_rect = Rect2(sprite_x, sprite_y, 16, 16)
 	
-	# Sets projectile rotation and direction based on player_is_facing
-	set_rotation_degrees(dir_dict[player_is_facing][1])
-	projectile_direction = dir_dict[player_is_facing][0] #.rotated(rotation)
+	# Sets projectile rotation and direction based on dir_player_facing
+	set_rotation_degrees(dir_dict[dir_player_facing][1])
+	projectile_direction = dir_dict[dir_player_facing][0] #.rotated(rotation)
 
 
 func _physics_process(delta):

@@ -13,9 +13,10 @@ extends CharacterBody2D
 
 
 # Variables
-var player_is_facing: String = "down" # Updated as part of update_animation()
-var player_is_carrying: bool = false
+var dir_player_facing: String = "down" # Updated as part of update_animation()
 var player_can_attack: bool = true
+var player_is_attacking: bool = false
+var player_is_carrying: bool = false
 var player_has_iframes: bool = false
 var input: Vector2 = Vector2.ZERO
 
@@ -28,9 +29,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	player_movement(delta)
+	player_movement(delta)	
+	if not player_is_attacking:
+		update_animation()
 	move_and_slide()
-	update_animation()
 
 
 # Get directional input from player
@@ -59,16 +61,15 @@ func update_animation() -> void:
 		animation.stop()
 	else:	
 		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: player_is_facing = "left"
-			elif velocity.x > 0: player_is_facing = "right"
+			if velocity.x < 0: dir_player_facing = "left"
+			elif velocity.x > 0: dir_player_facing = "right"
 		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: player_is_facing = "up"
-			if velocity.y > 0: player_is_facing = "down" 
-		player_is_facing = player_is_facing
+			if velocity.y < 0: dir_player_facing = "up"
+			if velocity.y > 0: dir_player_facing = "down" 
 		if player_is_carrying:
-			animation.play("carry_" + player_is_facing)
+			animation.play("carry_" + dir_player_facing)
 		else:
-			animation.play("walk_" + player_is_facing)
+			animation.play("walk_" + dir_player_facing)
 				
 
 # Hitbox Detection
@@ -81,14 +82,18 @@ func _on_area_2d_body_entered(body) -> void:
 
 # Player auto attack after cooldown
 func _on_attack_cooldown_timeout() -> void:
+	if not player_can_attack or player_is_carrying:
+		return
+	player_is_attacking = true
 	var player_sword_projectile = sword_scene.instantiate()
-	player_sword_projectile.player_is_facing = player_is_facing
-	#animation.play("attack_" + player_is_facing)
+	player_sword_projectile.dir_player_facing = dir_player_facing
+	animation.play("attack_" + dir_player_facing)
 	add_child(player_sword_projectile)
+	await animation.animation_finished
+	player_is_attacking = false
 	
 
 # Disables IFrames after timeout
 func _on_i_frames_timeout() -> void:
 	player_has_iframes = false
-	
 	

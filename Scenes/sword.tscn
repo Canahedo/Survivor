@@ -23,7 +23,7 @@ rotation = -0.785398
 shape = SubResource("RectangleShape2D_6vhm3")
 
 [node name="Lifespan" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 one_shot = true
 autostart = true
 
