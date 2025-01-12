@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 # Variables
 var dir_player_facing: String = "down" # Updated as part of update_animation()
+var player_is_dead: bool = false
 var player_can_attack: bool = true
 var player_is_attacking: bool = false
 var player_is_carrying: bool = false
@@ -25,10 +26,13 @@ var input: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	animation.stop()
 	animation.play("walk_down")
+	Messenger.PLAYER_KILLED.connect(_on_player_killed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
+	if player_is_dead:
+		return
 	player_movement(delta)	
 	if not player_is_attacking:
 		update_animation()
@@ -96,4 +100,12 @@ func _on_attack_cooldown_timeout() -> void:
 # Disables IFrames after timeout
 func _on_i_frames_timeout() -> void:
 	player_has_iframes = false
+	
+# What happens when the player is killed	
+func _on_player_killed():
+	velocity = Vector2.ZERO
+	player_is_dead = true
+	$AttackCooldown.stop()
+	animation.stop()
+	animation.play("player_death")
 	
