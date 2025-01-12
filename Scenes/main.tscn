@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oag41"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
 [ext_resource type="PackedScene" uid="uid://c64itn4vnqpqs" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
+[ext_resource type="Script" path="res://Scripts/logbert_control.gd" id="3_q3tes"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6wiph"]
 vertices = PackedVector2Array(665, 377, -26, 377, -26, -25, 665, -25)
@@ -1129,11 +1130,13 @@ tile_set = SubResource("TileSet_3lveg")
 position = Vector2(308, 166)
 collision_mask = 21
 
-[node name="LogbertSpawnTimer" type="Timer" parent="."]
+[node name="LogbertControl" type="Node2D" parent="."]
+script = ExtResource("3_q3tes")
+
+[node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]
 process_callback = 0
 wait_time = 5.0
 autostart = true
 
 [node name="Dispenser" parent="." instance=ExtResource("3_2ifrt")]
-
-[connection signal="timeout" from="LogbertSpawnTimer" to="." method="_on_logbert_spawn_timer_timeout"]
+[connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
