@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://ceptnlo4fo0y0"]
+[gd_scene load_steps=9 format=4 uid="uid://ceptnlo4fo0y0"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oag41"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
@@ -1139,4 +1139,5 @@ wait_time = 5.0
 autostart = true
 
 [node name="Dispenser" parent="." instance=ExtResource("3_2ifrt")]
+
 [connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
