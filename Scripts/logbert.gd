@@ -23,7 +23,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	z_index = position.y
+	z_index = int(position.y)
 	var path_direction = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity += (path_direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)

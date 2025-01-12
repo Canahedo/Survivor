@@ -21,6 +21,7 @@ Messenger="*res://Scripts/messenger.gd"
 
 [debug]
 
+gdscript/warnings/unused_signal=0
 gdscript/warnings/integer_division=0
 
 [display]
