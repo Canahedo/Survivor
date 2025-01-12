@@ -40,7 +40,6 @@ func get_path_to_player() -> void:
 # On timeout get a new path to the player
 func _on_timer_timeout() -> void:
 	get_path_to_player()
-	
 
 
 # Update the sprite animation based on movement

@@ -109,4 +109,3 @@ func _on_player_killed():
 	$AttackCooldown.stop()
 	animation.stop()
 	animation.play("player_death")
-	

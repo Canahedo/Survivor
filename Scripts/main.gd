@@ -11,6 +11,7 @@ const logbert_speed_modifier: int = 10 # Controls how quickly the speed increase
 const logbert_cooldown_modifier: float = 1.0 # How much the cooldown timer is reduced each respawn, in seconds
 const logberts_per_cycle: int = 5 # How many Logberts spawn before the cooldown is reduced
 
+
 # Spawns Logberts on a timer, increases their speed and reduces the cooldown each time
 func _on_logbert_spawn_timer_timeout():
 	spawn_logbert()
