@@ -4,9 +4,9 @@
 3. Continous or rounds?
 4. Special enemies?
 5. Active vs. Passive?
-6. Bosses with power ups?
+6. Bosses with power ups? (Megaman)
 7. Central settings file?
+8. Attatck types/Abilities?
+9. Meta progress?
 
-# Normalizing Code
-- animation_movement
-- path_direction
+
