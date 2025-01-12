@@ -30,6 +30,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 enemies=""
+player_attack=""
 
 [input]
 
@@ -71,7 +72,7 @@ ui_down={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Objects"
-2d_physics/layer_4="Projectiles"
+2d_physics/layer_4="Player Attacks"
 2d_physics/layer_5="Items & Zones"
 
 [rendering]

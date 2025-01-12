@@ -6,10 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vhm3"]
 size = Vector2(15, 4)
 
-[node name="Sword" type="Area2D" groups=["player_attack"]]
+[node name="Sword" type="Area2D"]
 rotation = -0.785398
-collision_layer = 8
-collision_mask = 6
 script = ExtResource("1_ykqrh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,7 +21,6 @@ rotation = -0.785398
 shape = SubResource("RectangleShape2D_6vhm3")
 
 [node name="Lifespan" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 autostart = true
 

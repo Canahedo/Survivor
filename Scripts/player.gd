@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 # Onready
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sword_scene: PackedScene = preload("res://Scenes/sword.tscn")
 
 
 # Variables
@@ -30,8 +31,6 @@ func _physics_process(delta) -> void:
 	player_movement(delta)
 	move_and_slide()
 	update_animation()
-	#if Input.is_action_just_pressed("ui_accept") and player_can_attack:
-		#player_attack()
 
 
 # Get directional input from player
@@ -56,50 +55,40 @@ func player_movement(delta) -> void:
 
 # Update the sprite animation based on movement direction
 func update_animation() -> void:
-	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()
 	else:	
 		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: animation_direction = "left"
-			elif velocity.x > 0: animation_direction = "right"
+			if velocity.x < 0: player_is_facing = "left"
+			elif velocity.x > 0: player_is_facing = "right"
 		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: animation_direction = "up"
-			if velocity.y > 0: animation_direction = "down" 
-		player_is_facing = animation_direction
+			if velocity.y < 0: player_is_facing = "up"
+			if velocity.y > 0: player_is_facing = "down" 
+		player_is_facing = player_is_facing
 		if player_is_carrying:
-			animation.play("carry_" + animation_direction)
+			animation.play("carry_" + player_is_facing)
 		else:
-			animation.play("walk_" + animation_direction)
+			animation.play("walk_" + player_is_facing)
 				
-
-# Player attack
-#func player_attack():
-	#animation.play("attack_down")
-	#player_can_attack = false
-	#await(get_tree().create_timer(player_attack_cooldown))
-	#player_can_attack = true
-
 
 # Hitbox Detection
 func _on_area_2d_body_entered(body) -> void:
 	if body.is_in_group("enemies") and player_has_iframes == false:
 		Messenger.PLAYER_HURT.emit()
 		player_has_iframes = true
-		print("IFrames on")
 		$IFrames.start()
 
 
+# Player auto attack after cooldown
 func _on_attack_cooldown_timeout() -> void:
-	print("Attacking: " + player_is_facing)
+	var player_sword_projectile = sword_scene.instantiate()
+	player_sword_projectile.player_is_facing = player_is_facing
+	#animation.play("attack_" + player_is_facing)
+	add_child(player_sword_projectile)
+	
 
-
+# Disables IFrames after timeout
 func _on_i_frames_timeout() -> void:
 	player_has_iframes = false
-	print("IFrames off")
 	
-		
-"""
-Notes and thoughts:
-	Do player_is_facing and animation_direction need to be seperate?
-"""
+	

@@ -527,6 +527,7 @@ radius = 6.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_2r2iy")
 
@@ -557,7 +558,7 @@ shape = SubResource("CapsuleShape2D_pknqd")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 process_callback = 0
-wait_time = 3.0
+wait_time = 1.5
 autostart = true
 
 [node name="IFrames" type="Timer" parent="."]

@@ -204,7 +204,7 @@ radius = 4.0
 radius = 6.0
 height = 20.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
+[node name="Logbert" type="CharacterBody2D" groups=["enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_nkmbn")
@@ -213,7 +213,7 @@ script = ExtResource("1_nkmbn")
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_35juf")
 animation = &"walk_down"
-frame_progress = 0.89754
+frame_progress = 0.619797
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -229,10 +229,12 @@ wait_time = 0.25
 autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 2
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_p3b8p")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
