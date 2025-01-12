@@ -5,36 +5,37 @@ extends CharacterBody2D
 @export var max_speed: int = 125
 @export var accel: int = 1000
 @export var friction: int = 1000
-@export var player_is_carrying: bool = false
 
 
 # Onready
-@onready var animation = $AnimatedSprite2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sword_scene: PackedScene = preload("res://Scenes/sword.tscn")
 
 
 # Variables
+var dir_player_facing: String = "down" # Updated as part of update_animation()
 var player_can_attack: bool = true
-var player_attack_cooldown: float = 3.0
+var player_is_attacking: bool = false
+var player_is_carrying: bool = false
+var player_has_iframes: bool = false
 var input: Vector2 = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Messenger.connect("PLAYER_HURT", _on_area_2d_body_entered)
 	animation.stop()
 	animation.play("walk_down")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
-	player_movement(delta)
+	player_movement(delta)	
+	if not player_is_attacking:
+		update_animation()
 	move_and_slide()
-	update_animation()
-	#if Input.is_action_just_pressed("ui_accept") and player_can_attack:
-		#player_attack()
 
 
-# Get player input
+# Get directional input from player
 func get_input() -> Vector2:
 	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
@@ -54,33 +55,45 @@ func player_movement(delta) -> void:
 		velocity = velocity.limit_length(max_speed)
 
 
-# Update the sprite animation based on movement
+# Update the sprite animation based on movement direction
 func update_animation() -> void:
-	var animation_direction: String
 	if velocity.length() == 0:
 		animation.stop()
 	else:	
 		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: animation_direction = "left"
-			elif velocity.x > 0: animation_direction = "right"
+			if velocity.x < 0: dir_player_facing = "left"
+			elif velocity.x > 0: dir_player_facing = "right"
 		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: animation_direction = "up"
-			if velocity.y > 0: animation_direction = "down" 
-		if velocity.x != 0 or velocity.y != 0:
-			if player_is_carrying:
-				animation.play("carry_" + animation_direction)
-			else:
-				animation.play("walk_" + animation_direction)
-
-
-# Player attack
-#func player_attack():
-	#animation.play("attack_down")
-	#player_can_attack = false
-	#await(get_tree().create_timer(player_attack_cooldown))
-	#player_can_attack = true
-
+			if velocity.y < 0: dir_player_facing = "up"
+			if velocity.y > 0: dir_player_facing = "down" 
+		if player_is_carrying:
+			animation.play("carry_" + dir_player_facing)
+		else:
+			animation.play("walk_" + dir_player_facing)
+				
 
 # Hitbox Detection
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	Messenger.PLAYER_HURT.emit()
+func _on_area_2d_body_entered(body) -> void:
+	if body.is_in_group("enemies") and player_has_iframes == false:
+		Messenger.PLAYER_HURT.emit()
+		player_has_iframes = true
+		$IFrames.start()
+
+
+# Player auto attack after cooldown
+func _on_attack_cooldown_timeout() -> void:
+	if not player_can_attack or player_is_carrying:
+		return
+	player_is_attacking = true
+	var player_sword_projectile = sword_scene.instantiate()
+	player_sword_projectile.dir_player_facing = dir_player_facing
+	animation.play("attack_" + dir_player_facing)
+	add_child(player_sword_projectile)
+	await animation.animation_finished
+	player_is_attacking = false
+	
+
+# Disables IFrames after timeout
+func _on_i_frames_timeout() -> void:
+	player_has_iframes = false
+	

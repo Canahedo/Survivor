@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 
 # Exports
-@export var player: CharacterBody2D
-@export var max_speed: int = 125
+@export var max_speed: int = 50
 @export var accel: int = 1000
 @export var friction: int = 1000
 
 
 # Onready
+@onready var player: CharacterBody2D = get_parent().get_node("Player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -57,3 +57,10 @@ func update_animation() -> void:
 			if velocity.y > 0: animation_direction = "down" 
 		if velocity.x != 0 or velocity.y != 0:
 			animation.play("walk_" + animation_direction)
+
+
+func _on_hitbox_area_entered(area):
+	print("HIT")
+	if area.is_in_group("player_attack"):
+		Messenger.ENEMY_SLAIN.emit()
+		queue_free()
