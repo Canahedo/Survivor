@@ -65,17 +65,17 @@ func player_movement(delta) -> void:
 func update_animation() -> void:
 	if velocity.length() == 0:
 		animation.stop()
-	else:	
-		if abs(velocity.x) > abs(velocity.y):
-			if velocity.x < 0: dir_player_facing = "left"
-			elif velocity.x > 0: dir_player_facing = "right"
-		elif abs(velocity.y) > abs(velocity.x):
-			if velocity.y < 0: dir_player_facing = "up"
-			if velocity.y > 0: dir_player_facing = "down" 
-		if player_is_carrying:
-			animation.play("carry_" + dir_player_facing)
-		else:
-			animation.play("walk_" + dir_player_facing)
+		return
+	elif abs(velocity.x) > abs(velocity.y):
+		if velocity.x < 0: dir_player_facing = "left"
+		elif velocity.x > 0: dir_player_facing = "right"
+	elif abs(velocity.y) > abs(velocity.x):
+		if velocity.y < 0: dir_player_facing = "up"
+		if velocity.y > 0: dir_player_facing = "down" 
+	if player_is_carrying:
+		animation.play("carry_" + dir_player_facing)
+	else:
+		animation.play("walk_" + dir_player_facing)
 
 
 # Hitbox Detection
@@ -91,11 +91,11 @@ func _on_attack_cooldown_timeout() -> void:
 	if not player_can_attack or player_is_carrying:
 		return
 	player_is_attacking = true
-	var player_sword_projectile = sword_scene.instantiate()
-	player_sword_projectile.dir_player_facing = dir_player_facing
-	player_sword_projectile.sword_lvl = sword_lvl
+	var sword = sword_scene.instantiate()
+	sword.player_facing = dir_player_facing
+	sword.sword_lvl = sword_lvl
 	animation.play("attack_" + dir_player_facing)
-	add_child(player_sword_projectile)
+	add_child(sword)
 	await animation.animation_finished
 	player_is_attacking = false
 

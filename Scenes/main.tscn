@@ -1132,6 +1132,7 @@ collision_mask = 21
 
 [node name="LogbertControl" type="Node2D" parent="."]
 script = ExtResource("3_q3tes")
+logbert_disabled = true
 
 [node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]
 process_callback = 0
@@ -1140,4 +1141,13 @@ autostart = true
 
 [node name="Dispenser" parent="." instance=ExtResource("3_2ifrt")]
 
+[node name="Button" type="Button" parent="."]
+offset_left = -204.0
+offset_top = -172.0
+offset_right = -150.0
+offset_bottom = -118.0
+text = "QUIT
+GAME"
+
 [connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
