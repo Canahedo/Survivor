@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccesd0r6re7fj"]
+[gd_scene load_steps=4 format=3 uid="uid://bxa12jcginjhu"]
 
-[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_hf17e"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_hf17e"]
 [ext_resource type="LabelSettings" uid="uid://dsjupabiwik4m" path="res://Resources/ui_text.tres" id="1_t8c22"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jlc6t"]
