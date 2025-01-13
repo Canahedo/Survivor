@@ -14,8 +14,10 @@ const logbert_speed_modifier: int = 10 # Controls how quickly the speed increase
 const logbert_cooldown_modifier: float = 1.0 # How much the cooldown timer is reduced each respawn, in seconds
 const logberts_per_cycle: int = 5 # How many Logberts spawn before the cooldown is reduced
 
+
 func _ready() -> void:
 	rng.randomize()
+
 
 # Spawns Logberts on a timer, increases their speed and reduces the cooldown each time
 func _on_logbert_spawn_timer_timeout():
@@ -28,13 +30,16 @@ func _on_logbert_spawn_timer_timeout():
 
 
 func spawn_logbert():
-	var logbert_instance: CharacterBody2D = logbert_scene.instantiate()
-	path.progress_ratio = 1
-	var path_progress_max = path.progress
-	path.progress = rng.randi_range(0,path_progress_max)
-	while((path.global_position.x < 0) or (path.global_position.x > 640) or (path.global_position.y < 0) or (path.global_position.y > 360)):
+	var spawn_count = rng.randi_range(1,5)
+	for n in spawn_count:	
+		var logbert_instance: CharacterBody2D = logbert_scene.instantiate()
+		path.progress_ratio = 1
+		var path_progress_max = path.progress
 		path.progress = rng.randi_range(0,path_progress_max)
-	logbert_instance.position = path.global_position
-	#logbert_instance.position = Vector2(randi_range(0, 640), randi_range(0, 360))
-	logbert_instance.max_speed += logbert_speed_modifier
-	add_child(logbert_instance)
+		while((path.global_position.x < 0) or (path.global_position.x > 640) or (path.global_position.y < 0) or (path.global_position.y > 360)):
+			path.progress = rng.randi_range(0,path_progress_max)
+		logbert_instance.position = path.global_position
+		#logbert_instance.position = Vector2(randi_range(0, 640), randi_range(0, 360))
+		logbert_instance.max_speed += logbert_speed_modifier
+		add_child(logbert_instance)
+	
