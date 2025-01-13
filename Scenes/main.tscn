@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oag41"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
-[ext_resource type="PackedScene" uid="uid://cltkf8gl80trg" path="res://Scenes/pause_menu.tscn" id="3_irbp1"]
 [ext_resource type="PackedScene" uid="uid://c64itn4vnqpqs" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
+[ext_resource type="PackedScene" uid="uid://cltkf8gl80trg" path="res://Scenes/pause_menu.tscn" id="3_irbp1"]
 [ext_resource type="Script" path="res://Scripts/logbert_control.gd" id="3_q3tes"]
 [ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/hud.tscn" id="5_am5jt"]
 
@@ -1119,15 +1119,15 @@ script = ExtResource("1_oag41")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
-mouse_filter = 2
-
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_irbp1")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
+mouse_filter = 2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 z_index = -4001
