@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7d5bujufl3vd"
-path="res://.godot/imported/wood_sword.png-42aa3ac54d61fa226be4b24640aea253.ctex"
+uid="uid://bj5s82d6dhpju"
+path="res://.godot/imported/roguewithflips.png-50be65f2794aa17bb026fa7c183455dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/gfx/wood_sword.png"
-dest_files=["res://.godot/imported/wood_sword.png-42aa3ac54d61fa226be4b24640aea253.ctex"]
+source_file="res://Assets/roguewithflips.png"
+dest_files=["res://.godot/imported/roguewithflips.png-50be65f2794aa17bb026fa7c183455dc.ctex"]
 
 [params]
 
