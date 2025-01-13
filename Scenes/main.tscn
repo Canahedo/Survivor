@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
 [ext_resource type="PackedScene" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
 [ext_resource type="Script" path="res://Scripts/logbert_control.gd" id="3_q3tes"]
-[ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/ui.tscn" id="5_am5jt"]
+[ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/hud.tscn" id="5_am5jt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6wiph"]
 vertices = PackedVector2Array(665, 377, -26, 377, -26, -25, 665, -25)
@@ -1118,7 +1118,8 @@ script = ExtResource("1_oag41")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
+mouse_filter = 2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 z_index = -4001
@@ -1137,7 +1138,6 @@ collision_mask = 21
 
 [node name="LogbertControl" type="Node2D" parent="."]
 script = ExtResource("3_q3tes")
-logbert_disabled = true
 
 [node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]
 process_callback = 0
