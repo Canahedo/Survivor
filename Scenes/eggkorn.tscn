@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=3 uid="uid://dodefeesaxage"]
 
 [ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_krjk4"]
-[ext_resource type="Texture2D" path="res://Assets/roguewithflips.png" id="2_e7o4o"]
-[ext_resource type="Texture2D" path="res://Assets/rogue.png" id="3_bguq1"]
+[ext_resource type="Texture2D" uid="uid://bj5s82d6dhpju" path="res://Assets/roguewithflips.png" id="2_e7o4o"]
+[ext_resource type="Texture2D" uid="uid://b3og7oktnmhja" path="res://Assets/rogue.png" id="3_bguq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31a06"]
 radius = 4.0
