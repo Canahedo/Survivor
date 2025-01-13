@@ -7,8 +7,8 @@ var score: int = 0
 
 
 # Label Nodes Used to Track UI Values
-@onready var health_tracker = $ui_values/health
-@onready var score_tracker =  $ui_values/score
+@onready var health_tracker = $health
+@onready var score_tracker =  $score
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
