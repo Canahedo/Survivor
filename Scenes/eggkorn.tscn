@@ -278,7 +278,7 @@ shape = SubResource("CapsuleShape2D_p3b8p")
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_tpscc")
 animation = &"walk_right"
-frame_progress = 0.10869
+frame_progress = 0.24599
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
