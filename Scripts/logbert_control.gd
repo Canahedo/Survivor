@@ -1,6 +1,11 @@
 extends Node2D
 
 
+# Exports
+@export var logbert_disabled = false # turns off Logbert for testing/debug
+@export var logbert_spawn_max = 5
+
+
 # Onready
 @onready var logbert_scene: PackedScene = preload("res://Scenes/logbert.tscn")
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -8,7 +13,6 @@ extends Node2D
 
 
 # Variables
-@export var logbert_disabled = false # turns off Logbert for testing/debug
 var logbert_respawns: int = 0 # Tracks how many Logberts have spawned
 const logbert_speed_modifier: int = 10 # Controls how quickly the speed increase scales
 const logbert_cooldown_modifier: float = 1.0 # How much the cooldown timer is reduced each respawn, in seconds
@@ -30,7 +34,7 @@ func _on_logbert_spawn_timer_timeout():
 
 
 func spawn_logbert():
-	var spawn_count = rng.randi_range(1,5)
+	var spawn_count = rng.randi_range(1,logbert_spawn_max)
 	for n in spawn_count:	
 		var logbert_instance: CharacterBody2D = logbert_scene.instantiate()
 		path.progress_ratio = 1
