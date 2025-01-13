@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=3 uid="uid://b6j240l5uqmf3"]
 
 [ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_krjk4"]
-[ext_resource type="Texture2D" path="res://Assets/roguewithflips.png" id="2_e7o4o"]
-[ext_resource type="Texture2D" path="res://Assets/rogue.png" id="3_bguq1"]
+[ext_resource type="Texture2D" uid="uid://p4hbjjulpfup" path="res://Assets/roguewithflips.png" id="2_e7o4o"]
+[ext_resource type="Texture2D" uid="uid://dq2y3qhcomblx" path="res://Assets/rogue.png" id="3_bguq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31a06"]
 radius = 4.0
@@ -277,8 +277,8 @@ shape = SubResource("CapsuleShape2D_p3b8p")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_tpscc")
-animation = &"walk_right"
-frame_progress = 0.24599
+animation = &"walk_left"
+frame_progress = 0.158555
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
