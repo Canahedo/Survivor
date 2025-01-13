@@ -40,7 +40,6 @@ func _ready() -> void:
 
 	set_rotation_degrees(initial_rotation)
 
-
 func _physics_process(delta):
 	global_position += SPEED * atk_direction * delta
 
