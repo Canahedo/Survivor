@@ -1137,7 +1137,6 @@ collision_mask = 21
 
 [node name="LogbertControl" type="Node2D" parent="."]
 script = ExtResource("3_q3tes")
-logbert_disabled = true
 
 [node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]
 process_callback = 0
