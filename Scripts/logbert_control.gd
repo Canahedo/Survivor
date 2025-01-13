@@ -29,9 +29,9 @@ func _on_logbert_spawn_timer_timeout():
 	if logbert_disabled:
 		return
 	spawn_logbert()
-	#var temp_value = clampf(logbert_respawns / logberts_per_cycle, 0.0, 100.0) * logbert_cooldown_modifier
-	#var new_cooldown = clampf($LogbertSpawnTimer.wait_time - temp_value, .5, 3.0)
-	#$LogbertSpawnTimer.wait_time = new_cooldown
+	var temp_value = clampf(logbert_respawns / logberts_per_cycle, 0.0, 100.0) * logbert_cooldown_modifier
+	var new_cooldown = clampf($LogbertSpawnTimer.wait_time - temp_value, .5, 3.0)
+	$LogbertSpawnTimer.wait_time = new_cooldown
 
 
 func spawn_logbert():
