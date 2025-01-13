@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ceptnlo4fo0y0"]
+[gd_scene load_steps=10 format=4 uid="uid://ceptnlo4fo0y0"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_oag41"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
-[ext_resource type="PackedScene" uid="uid://c64itn4vnqpqs" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
+[ext_resource type="PackedScene" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
 [ext_resource type="Script" path="res://Scripts/logbert_control.gd" id="3_q3tes"]
+[ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/ui.tscn" id="5_am5jt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6wiph"]
 vertices = PackedVector2Array(665, 377, -26, 377, -26, -25, 665, -25)
@@ -1114,6 +1115,10 @@ sources/0 = SubResource("TileSetAtlasSource_rs5qj")
 [node name="Main" type="Node2D"]
 z_as_relative = false
 script = ExtResource("1_oag41")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 z_index = -4001

@@ -1,8 +1,7 @@
-[gd_scene load_steps=69 format=3 uid="uid://dnltq0xquebi1"]
+[gd_scene load_steps=68 format=3 uid="uid://dnltq0xquebi1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
-[ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/ui.tscn" id="3_4nkst"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t28pk"]
 atlas = ExtResource("2_wsq14")
@@ -547,13 +546,6 @@ rotation = 1.5708
 shape = SubResource("CircleShape2D_ydfwc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="UI" parent="Camera2D" instance=ExtResource("3_4nkst")]
-process_mode = 3
-offset_left = -320.0
-offset_top = -179.0
-offset_right = -320.0
-offset_bottom = -179.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 2
