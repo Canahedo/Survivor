@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://dnltq0xquebi1"]
+[gd_scene load_steps=68 format=3 uid="uid://dnltq0xquebi1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://2440l4gfhbuc" path="res://Assets/gfx/character_no_weapon.png" id="2_7lt6f"]
@@ -526,12 +526,6 @@ radius = 4.0
 radius = 6.0
 height = 20.0
 
-[sub_resource type="Curve2D" id="Curve2D_1kkwl"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 338, -196, 0, 0, 0, 0, 338, 197, 0, 0, 0, 0, -336, 197, 0, 0, 0, 0, -336, -196, 0, 0, 0, 0, 338, -196)
-}
-point_count = 5
-
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 motion_mode = 1
@@ -566,13 +560,6 @@ autostart = true
 process_callback = 0
 wait_time = 2.0
 one_shot = true
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_1kkwl")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(338, -196)
-progress = 2134.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

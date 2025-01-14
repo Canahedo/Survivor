@@ -4,11 +4,12 @@ extends Node2D
 @onready var tile_map: TileMapLayer = $EnemyNavRegion/TileMapLayer
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 @onready var nav_region: NavigationRegion2D = $EnemyNavRegion
+@onready var map_coords: PackedVector2Array = get_game_area()
 var paused: bool = false
 
 
 func _ready():
-	update_nav_polygon()
+	update_nav_polygon(map_coords)
 
 
 func _process(_delta) -> void:
@@ -45,10 +46,9 @@ func get_game_area() -> PackedVector2Array:
 	return game_area_packed_vector
 
 
-func update_nav_polygon() -> void:
-	var play_area: PackedVector2Array = get_game_area()
+func update_nav_polygon(game_area: PackedVector2Array) -> void:
 	var nav_polygon: NavigationPolygon = NavigationPolygon.new()
-	nav_polygon.set_vertices(play_area)
+	nav_polygon.set_vertices(game_area)
 	var new_polygon_indicies = PackedInt32Array([0, 1, 2, 3])
 	nav_polygon.get_navigation_mesh().add_polygon(new_polygon_indicies)
 	nav_region.navigation_polygon = nav_polygon
