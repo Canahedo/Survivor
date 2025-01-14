@@ -8,7 +8,6 @@ var paused: bool = false
 
 
 func _ready():
-	pause_menu.hide()
 	update_nav_polygon()
 
 

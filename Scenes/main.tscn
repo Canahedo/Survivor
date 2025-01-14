@@ -1184,6 +1184,5 @@ wait_time = 5.0
 autostart = true
 
 [node name="Dispenser" parent="." instance=ExtResource("3_2ifrt")]
-visible = false
 
 [connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
