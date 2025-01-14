@@ -1,5 +1,5 @@
 extends Creature
-
+class_name Player
 
 # Onready
 @onready var sword_scene: PackedScene = preload("res://Scenes/sword.tscn")
@@ -12,7 +12,7 @@ var input: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animation.play("walk_down")
+	#animation.play("walk_down")
 	Messenger.PLAYER_KILLED.connect(_on_player_killed)
 	Messenger.SWORD_UPGRADED.connect(upgrade_sword)
 
@@ -23,7 +23,8 @@ func _physics_process(delta) -> void:
 		z_index = int(position.y)
 		player_movement(delta)	
 		if not is_attacking:
-			update_animation()
+			pass
+			#update_animation()
 		move_and_slide()
 
 
