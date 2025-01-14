@@ -15,6 +15,7 @@ func _ready():
 	var new_polygon_indices = PackedInt32Array([0, 1, 2, 3])
 	new_navigation_mesh.add_polygon(new_polygon_indices)
 	nav_region.navigation_polygon = new_navigation_mesh
+	NavigationServer2D.bake_from_source_geometry_data(new_navigation_mesh, NavigationMeshSourceGeometryData2D.new());
 	nav_region.bake_navigation_polygon()
 
 func _process(_delta) -> void:
