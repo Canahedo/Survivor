@@ -25,7 +25,6 @@ var input: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(global_position)
 	animation.stop()
 	animation.play("walk_down")
 	Messenger.PLAYER_KILLED.connect(_on_player_killed)
