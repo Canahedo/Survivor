@@ -9,7 +9,7 @@ extends Node2D
 # Onready
 @onready var logbert_scene: PackedScene = preload("res://Scenes/logbert.tscn")
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-@onready var path: PathFollow2D = get_node("/root/Main/Player/Path2D/PathFollow2D")
+@onready var main: Node2D = get_node("/root/Main")
 
 
 # Variables
@@ -38,16 +38,9 @@ func spawn_logbert():
 	print("Spawning Logbert")
 	var spawn_count = rng.randi_range(1,logbert_spawn_max)
 	print(spawn_count)
-	#var path_progress_max = path.progress
 	for n in range(0,spawn_count):	
 		var logbert_instance: CharacterBody2D = logbert_scene.instantiate()
-		#path.progress_ratio = 1
-		#path.progress = rng.randi_range(0,path_progress_max)
-		#while((path.global_position.x < 0) or (path.global_position.x > 640) or (path.global_position.y < 0) or (path.global_position.y > 360)):
-		#	path.progress = rng.randi_range(0,path_progress_max)
-		#logbert_instance.position = path.global_position
-		logbert_instance.position = Vector2(randi_range(0, 640), randi_range(0, 360))
+		logbert_instance.global_position = Vector2(randf_range(main.map_coords[0].x + 16, main.map_coords[2].x - 16), randf_range(main.map_coords[0].y + 16, main.map_coords[2].y - 16))
 		logbert_instance.max_speed += logbert_speed_modifier
 		add_child(logbert_instance)
 		n += 1
-	
