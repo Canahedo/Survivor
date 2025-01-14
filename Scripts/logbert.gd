@@ -36,6 +36,8 @@ func get_path_to_player() -> void:
 	nav_agent.target_position = player.global_position
 	if nav_agent.distance_to_target() <= nav_agent.target_desired_distance:
 		nav_agent.target_position = self.global_position
+	
+	print(player.global_position)
 
 
 # On timeout get a new path to the player
