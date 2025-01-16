@@ -1281,7 +1281,7 @@ immortal = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_w4365")
-animation = &"idle_left"
+animation = &"idle_down"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1295,9 +1295,9 @@ root_node = NodePath(".")
 tree_root = ExtResource("4_wfea3")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Run/blend_position = Vector2(0, 0)
+parameters/Attack/blend_position = Vector2(-0.0133503, 0.0257611)
+parameters/Idle/blend_position = Vector2(-0.00190717, 0.0632318)
+parameters/Run/blend_position = Vector2(-0.00317866, 0.00702572)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
