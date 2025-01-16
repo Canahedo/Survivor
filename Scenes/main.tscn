@@ -1146,6 +1146,7 @@ sources/0 = SubResource("TileSetAtlasSource_rs5qj")
 
 [node name="Main" type="Node2D"]
 z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_oag41")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1158,6 +1159,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
+z_index = 4095
 mouse_filter = 2
 
 [node name="EnemyNavRegion" type="NavigationRegion2D" parent="."]
@@ -1176,6 +1178,7 @@ position = Vector2(308, 166)
 collision_mask = 21
 
 [node name="LogbertControl" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("3_q3tes")
 
 [node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]

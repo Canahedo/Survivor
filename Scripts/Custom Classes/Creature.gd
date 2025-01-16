@@ -3,6 +3,8 @@ class_name Creature
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
+@export var immortal: bool = false # Makes creature unkillable, for debug
+
 var max_speed: int = 125
 var accel: int = 1000
 var friction: int = 1000

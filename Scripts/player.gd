@@ -20,7 +20,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta) -> void:
 	if not is_dead:
-		z_index = int(position.y)
 		player_movement(delta)	
 		if not is_attacking:
 			pass
@@ -50,7 +49,7 @@ func player_movement(delta) -> void:
 
 # Hitbox Detection
 func _on_area_2d_body_entered(body) -> void:
-	if body.is_in_group("enemies") and has_iframes == false:
+	if body.is_in_group("enemies") and has_iframes == false and not immortal:	
 		Messenger.PLAYER_HURT.emit()
 		has_iframes = true
 		$IFrames.start()
