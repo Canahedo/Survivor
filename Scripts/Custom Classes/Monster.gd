@@ -10,6 +10,7 @@ func _ready() -> void:
 
 	max_speed = 50
 	
+	#animation_tree.active = true #Need to create anim tree
 	set_physics_process(false)
 	await get_tree().process_frame
 	get_path_to_player()
@@ -22,7 +23,7 @@ func _physics_process(delta) -> void:
 	velocity += (path_direction * accel * delta)
 	velocity = velocity.limit_length(max_speed)
 	move_and_slide()
-	update_animation()
+	#update_animation()
 	
 	
 # Gets player global position and updates target position

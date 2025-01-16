@@ -7,7 +7,7 @@ extends Area2D
 
 
 # Configured during instantiation
-@onready var player_facing: String
+@onready var player_facing: Vector2
 @onready var sword_lvl: int
 
 
@@ -25,23 +25,19 @@ func _ready() -> void:
 	sprites.frame = sword_lvl	
 
 	match player_facing:
-		"up": 
-			atk_direction = Vector2.UP
+		Vector2.UP: 
 			initial_rotation = -45
-		"down": 
-			atk_direction = Vector2.DOWN
+		Vector2.DOWN: 
 			initial_rotation = 135
-		"left": 
-			atk_direction = Vector2.LEFT
+		Vector2.LEFT: 
 			initial_rotation = 225
-		"right": 
-			atk_direction = Vector2.RIGHT
+		Vector2.RIGHT: 
 			initial_rotation = 45
 
 	set_rotation_degrees(initial_rotation)
 
 func _physics_process(delta):
-	global_position += SPEED * atk_direction * delta
+	global_position += SPEED * player_facing * delta
 
 
 # Removes sword after preset time

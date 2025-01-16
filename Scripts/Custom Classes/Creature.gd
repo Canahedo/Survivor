@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Creature
 
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 @export var immortal: bool = false # Makes creature unkillable, for debug
 
@@ -9,14 +10,14 @@ var max_speed: int = 125
 var accel: int = 1000
 var friction: int = 1000
 
-var dir_facing: String = "down"
+var dir_facing: Vector2 = Vector2.DOWN
 var is_dead: bool = false
 var is_carrying: bool = false
 var can_attack: bool = true
 var is_attacking: bool = false
 var has_iframes: bool = false
 
-
+"""
 # Update the sprite animation based on movement direction
 func update_animation() -> void:
 	if velocity.length() == 0:
@@ -32,3 +33,4 @@ func update_animation() -> void:
 		animation.play("carry_" + dir_facing)
 	else:
 		animation.play("walk_" + dir_facing)
+"""
