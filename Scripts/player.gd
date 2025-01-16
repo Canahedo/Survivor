@@ -29,10 +29,11 @@ func _physics_process(delta) -> void:
 
 # Get directional input from player
 func get_input() -> Vector2:
-	input.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	input.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
-	return input.normalized()
-
+	input = Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		)
+	return input
 
 # Update player movement based on input
 func player_movement(delta) -> void:
@@ -41,6 +42,7 @@ func player_movement(delta) -> void:
 		if velocity.length() > (friction * delta):
 			velocity -= velocity.normalized() * (friction * delta) 
 		else:
+			pass
 			velocity = Vector2.ZERO
 	else:
 		velocity += (input * accel * delta)
@@ -57,13 +59,14 @@ func _on_area_2d_body_entered(body) -> void:
 
 # Player auto attack after cooldown
 func _on_attack_cooldown_timeout() -> void:
+	return
 	if not can_attack or is_carrying:
 		return
 	is_attacking = true
 	var sword = sword_scene.instantiate()
 	sword.player_facing = dir_facing
 	sword.sword_lvl = sword_lvl
-	animation.play("attack_" + dir_facing)
+	#animation.play("attack_" + dir_facing)
 	add_child(sword)
 	await animation.animation_finished
 	is_attacking = false

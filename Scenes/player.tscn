@@ -1,10 +1,10 @@
-[gd_scene load_steps=109 format=3 uid="uid://dnltq0xquebi1"]
+[gd_scene load_steps=100 format=3 uid="uid://dnltq0xquebi1"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://2440l4gfhbuc" path="res://Assets/gfx/character_no_weapon.png" id="2_7lt6f"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
 [ext_resource type="Script" path="res://Scripts/player_animation.gd" id="4_7yg2g"]
-[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://wjhfxu7ki260" path="res://Animations/player_run_blend.tres" id="4_x0okv"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://ulrnl5vfkj2w" path="res://Animations/player_anim_states.tres" id="4_wfea3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07jrp"]
 atlas = ExtResource("2_7lt6f")
@@ -1264,48 +1264,6 @@ _data = {
 "walk_up": SubResource("Animation_1jmeg")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n8ws8"]
-animation = &"idle_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vdrok"]
-animation = &"idle_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jip31"]
-animation = &"idle_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bdvbs"]
-animation = &"idle_up"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ja8my"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_n8ws8")
-blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_vdrok")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_jip31")
-blend_point_2/pos = Vector2(0, 1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_bdvbs")
-blend_point_3/pos = Vector2(0, -1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_coc0r"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ullb"]
-advance_mode = 2
-advance_condition = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qggd4"]
-advance_mode = 2
-advance_condition = &"run"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sxsgq"]
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ja8my")
-states/Idle/position = Vector2(382, 214)
-states/Run/node = ExtResource("4_x0okv")
-states/Run/position = Vector2(443, 90)
-states/Start/position = Vector2(187, 100)
-transitions = ["Start", "Run", SubResource("AnimationNodeStateMachineTransition_coc0r"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_1ullb"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qggd4")]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ydfwc"]
 radius = 4.0
 
@@ -1323,7 +1281,7 @@ immortal = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_w4365")
-animation = &"idle_down"
+animation = &"idle_left"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1334,11 +1292,11 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath(".")
-tree_root = SubResource("AnimationNodeStateMachine_sxsgq")
+tree_root = ExtResource("4_wfea3")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/idle = false
-parameters/conditions/run = false
-parameters/Idle/blend_position = Vector2(-0.00572157, 0.020316)
+parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
