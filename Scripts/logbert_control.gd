@@ -8,6 +8,7 @@ extends Node2D
 
 # Onready
 @onready var logbert_scene: PackedScene = preload("res://Scenes/logbert.tscn")
+@onready var eggkorn_scene: PackedScene = preload("res://Scenes/eggkorn.tscn")
 @onready var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var main: Node2D = get_node("/root/Main")
 
@@ -25,7 +26,7 @@ func _ready() -> void:
 
 
 # Spawns Logberts on a timer, increases their speed and reduces the cooldown each time
-func _on_logbert_spawn_timer_timeout():
+func _on_logbert_spawn_timer_timeout() -> void:
 	if logbert_disabled:
 		return
 	spawn_logbert()
@@ -34,13 +35,16 @@ func _on_logbert_spawn_timer_timeout():
 	$LogbertSpawnTimer.wait_time = new_cooldown
 
 
-func spawn_logbert():
-	print("Spawning Logbert")
+func spawn_logbert() -> void:
 	var spawn_count = rng.randi_range(1,logbert_spawn_max)
-	print(spawn_count)
-	for n in range(0,spawn_count):	
-		var logbert_instance: CharacterBody2D = logbert_scene.instantiate()
-		logbert_instance.global_position = Vector2(randf_range(main.map_coords[0].x + 16, main.map_coords[2].x - 16), randf_range(main.map_coords[0].y + 16, main.map_coords[2].y - 16))
+	for n in range(0,spawn_count):
+		var logbert_instance: Monster = logbert_scene.instantiate()
+
+		# Choose Spawn Location
+		var spawn_location: Vector2
+		spawn_location.x = randf_range(main.map_coords[0].x + 16, main.map_coords[2].x - 16)
+		spawn_location.y = randf_range(main.map_coords[0].y + 16, main.map_coords[2].y - 16)
+		logbert_instance.global_position = spawn_location 
+		
 		logbert_instance.max_speed += logbert_speed_modifier
 		add_child(logbert_instance)
-		n += 1
