@@ -7,37 +7,23 @@ extends Area2D
 
 
 # Configured during instantiation
-@onready var player_facing: Vector2
+@onready var atk_direction: Vector2
 @onready var sword_lvl: int
 
 
-# Calculated during _ready()
-@onready var atk_direction: Vector2
-@onready var initial_rotation: int
-
-
+# Variables
 const SPEED = 200
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	sprites.frame = sword_lvl	
+	sprites.frame = sword_lvl
+	var sprite_rotation = atk_direction.angle() + deg_to_rad(45)
+	rotate(sprite_rotation)
 
-	match player_facing:
-		Vector2.UP: 
-			initial_rotation = -45
-		Vector2.DOWN: 
-			initial_rotation = 135
-		Vector2.LEFT: 
-			initial_rotation = 225
-		Vector2.RIGHT: 
-			initial_rotation = 45
-
-	set_rotation_degrees(initial_rotation)
 
 func _physics_process(delta):
-	global_position += SPEED * player_facing * delta
+	global_position += SPEED * atk_direction * delta
 
 
 # Removes sword after preset time

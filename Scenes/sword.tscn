@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddk1tufjjkmyn"]
+[gd_scene load_steps=25 format=3 uid="uid://ddk1tufjjkmyn"]
 
 [ext_resource type="Script" path="res://Scripts/sword.gd" id="1_2jaoq"]
 [ext_resource type="Texture2D" uid="uid://b68smovpfitsx" path="res://Assets/swordsprites.png" id="1_wmewg"]
@@ -157,71 +157,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vhm3"]
 size = Vector2(15, 4)
 
-[sub_resource type="Animation" id="Animation_io5c0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-6, -6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.5708]
-}
-
-[sub_resource type="Animation" id="Animation_4oioc"]
-resource_name = "swing_sword"
-length = 0.2
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-6, -6), Vector2(-4, -6), Vector2(-2, -6), Vector2(0, -6), Vector2(2, -6), Vector2(4, -6), Vector2(6, -6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, -1.309, -1.0472, -0.785398, -0.523599, -0.261799, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbij3"]
-_data = {
-"RESET": SubResource("Animation_io5c0"),
-"swing_sword": SubResource("Animation_4oioc")
-}
-
 [node name="Sword" type="Area2D" groups=["player_attack"]]
-position = Vector2(-6, -6)
-rotation = -1.5708
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_2jaoq")
@@ -239,10 +175,5 @@ shape = SubResource("RectangleShape2D_6vhm3")
 wait_time = 0.25
 one_shot = true
 autostart = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kbij3")
-}
 
 [connection signal="timeout" from="Lifespan" to="." method="_on_lifespan_timeout"]

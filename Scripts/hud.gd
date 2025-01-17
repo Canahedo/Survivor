@@ -12,7 +12,7 @@ var score: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	Messenger.ENEMY_SLAIN.connect(_on_player_scored)
 	Messenger.PLAYER_HURT.connect(_on_player_hurt)
 	
@@ -22,15 +22,13 @@ func _ready():
 
 
 # Called by "ENEMY_SLAIN" signal
-func _on_player_scored():
-	print("Score")
+func _on_player_scored() -> void:
 	score += 1
 	score_tracker.text = str(score)
 
 
 # Called by "PLAYER_HURT" signal	
-func _on_player_hurt():
-	print("Hurt")
+func _on_player_hurt() -> void:
 	health = clampi(health - 1, 0, 99)
 	health_tracker.text = str(health)
 	if health == 0:

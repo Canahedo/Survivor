@@ -1,6 +1,8 @@
 extends Control
 
+
 @onready var main: Node2D = get_node("/root/Main")
+
 
 func _on_resume_pressed() -> void:
 	main.pauseMenu()
