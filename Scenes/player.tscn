@@ -1281,12 +1281,12 @@ y_sort_enabled = true
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_2r2iy")
-immortal = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_w4365")
-animation = &"attack_down"
+animation = &"idle_left"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")

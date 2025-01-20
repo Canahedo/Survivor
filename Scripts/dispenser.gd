@@ -1,7 +1,11 @@
 extends Area2D
 
 
-var sword_lvl = 1
+@onready var disp_cooldown: Timer = $DispencerCooldown
+@onready var sword_sprites: AnimatedSprite2D = $SwordSprites
+
+
+var sword_lvl: int = 1
 
 
 func _ready() -> void:
@@ -11,17 +15,17 @@ func _ready() -> void:
 func hide_dispenser() -> void:
 	visible = false
 	position = Vector2(0,-100)
-	$DispencerCooldown.start()
-	
+	disp_cooldown.start()
+
 
 func _on_dispencer_cooldown_timeout() -> void:
 	visible = true
 	position = Vector2(randi_range(0, 640), randi_range(0, 360))
 	sword_lvl += 1
-	$SwordSprites.frame = sword_lvl
+	sword_sprites.frame = sword_lvl
 
 
-func _on_body_entered(body) -> void:
+func _on_body_entered(body: CharacterBody2D) -> void:
 	if body.name == "Player":
 		collect()
 		hide_dispenser()
