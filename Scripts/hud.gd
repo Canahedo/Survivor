@@ -17,7 +17,7 @@ var kills: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var _connections = Messenger.PLAYER_HURT.connect(_on_player_hurt)
+	var _connections: int = Messenger.PLAYER_HURT.connect(_on_player_hurt)
 	_connections += Messenger.SWORD_COLLECTED.connect(_on_sword_collected)
 	_connections += Messenger.ENEMY_SLAIN.connect(_on_enemy_slain)
 
