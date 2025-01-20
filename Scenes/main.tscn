@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://ceptnlo4fo0y0"]
 
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_oag41"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_ynat5"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
 [ext_resource type="PackedScene" uid="uid://c64itn4vnqpqs" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
 [ext_resource type="PackedScene" uid="uid://cltkf8gl80trg" path="res://Scenes/pause_menu.tscn" id="3_irbp1"]
@@ -1147,7 +1147,7 @@ sources/0 = SubResource("TileSetAtlasSource_rs5qj")
 [node name="Main" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_oag41")
+script = ExtResource("1_ynat5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

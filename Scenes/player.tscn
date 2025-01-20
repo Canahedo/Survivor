@@ -1,6 +1,6 @@
 [gd_scene load_steps=101 format=3 uid="uid://dnltq0xquebi1"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2r2iy"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_qh4ro"]
 [ext_resource type="Texture2D" uid="uid://2440l4gfhbuc" path="res://Assets/gfx/character_no_weapon.png" id="2_7lt6f"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://ulrnl5vfkj2w" path="res://Animations/player_anim_states.tres" id="4_wfea3"]
@@ -1280,7 +1280,7 @@ height = 20.0
 y_sort_enabled = true
 collision_mask = 6
 motion_mode = 1
-script = ExtResource("1_2r2iy")
+script = ExtResource("1_qh4ro")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

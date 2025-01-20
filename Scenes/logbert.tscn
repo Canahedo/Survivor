@@ -1,6 +1,6 @@
 [gd_scene load_steps=51 format=3 uid="uid://bgjqpolvelvxu"]
 
-[ext_resource type="Script" path="res://Scripts/Logbert.gd" id="1_nkmbn"]
+[ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_vslqj"]
 [ext_resource type="Texture2D" uid="uid://6tsyaldvu81u" path="res://Assets/gfx/log.png" id="2_hd1t1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7a5s"]
@@ -483,7 +483,7 @@ collision_layer = 2
 collision_mask = 15
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_nkmbn")
+script = ExtResource("1_vslqj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)

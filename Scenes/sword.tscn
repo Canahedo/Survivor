@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://ddk1tufjjkmyn"]
 
-[ext_resource type="Script" path="res://Scripts/Sword.gd" id="1_2jaoq"]
+[ext_resource type="Script" path="res://Scripts/sword.gd" id="1_pma7l"]
 [ext_resource type="Texture2D" uid="uid://b68smovpfitsx" path="res://Assets/swordsprites.png" id="1_wmewg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_302f0"]
@@ -160,7 +160,7 @@ size = Vector2(15, 4)
 [node name="Sword" type="Area2D" groups=["player_attack"]]
 collision_layer = 8
 collision_mask = 6
-script = ExtResource("1_2jaoq")
+script = ExtResource("1_pma7l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_npu7q")
