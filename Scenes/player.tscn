@@ -1262,7 +1262,7 @@ _data = {
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ipjl2"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_31gxe"]
-graph_offset = Vector2(-820.4, 3)
+graph_offset = Vector2(-808.28, 72.1809)
 nodes/AnimationNodeStateMachine/node = ExtResource("4_wfea3")
 nodes/AnimationNodeStateMachine/position = Vector2(-440, 200)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ipjl2")
@@ -1281,7 +1281,6 @@ y_sort_enabled = true
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_2r2iy")
-immortal = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
