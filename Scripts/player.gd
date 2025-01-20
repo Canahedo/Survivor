@@ -12,7 +12,7 @@ var input: Vector2 = Vector2.DOWN
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
+func _ready() -> void:
 	Messenger.PLAYER_KILLED.connect(_on_player_killed)
 	Messenger.SWORD_UPGRADED.connect(_on_upgrade_sword)
 	animation_tree.active = true
@@ -23,7 +23,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	if not is_dead:
 		input = get_input()
-		update_player_velocity(delta, input)	
+		update_player_velocity(delta, input)
 		player_animation()
 		move_and_slide()
 
@@ -36,31 +36,31 @@ func get_input() -> Vector2:
 
 
 # Update player velocity based on input, accounting for acceleration and friction
-func update_player_velocity(delta, input) -> void: 
-	
+func update_player_velocity(delta, input) -> void:
+
 	# If input is not ZERO, set direction and accelerate up to max speed
 	if input != Vector2.ZERO:
 		dir_facing = input
 		velocity += (input * accel * delta)
 		velocity = velocity.limit_length(max_speed)
-	
+
 	# If input is ZERO, slow down and stop
 	elif velocity.length() > (friction * delta):
-		velocity -= velocity.normalized() * (friction * delta) 
+		velocity -= velocity.normalized() * (friction * delta)
 	else:
 		velocity = Vector2.ZERO
-	
+
 
 # Set animation blend spaces based on movement direction
 func player_animation() -> void:
 	animation_tree.set("parameters/AnimationNodeStateMachine/Idle/blend_position", dir_facing)
 	animation_tree.set("parameters/AnimationNodeStateMachine/Walk/blend_position", dir_facing)
 	animation_tree.set("parameters/AnimationNodeStateMachine/Attack/blend_position", dir_facing)
-	
-		
+
+
 # Hitbox Detection
 func _on_area_2d_body_entered(body) -> void:
-	if body.is_in_group("enemies") and has_iframes == false and not immortal:	
+	if body.is_in_group("enemies") and has_iframes == false and not immortal:
 		Messenger.PLAYER_HURT.emit()
 		has_iframes = true
 		$IFrames.start()
@@ -82,14 +82,14 @@ func _on_i_frames_timeout() -> void:
 	has_iframes = false
 
 
-# Triggered when player hits 0 health	
+# Triggered when player hits 0 health
 func _on_player_killed():
 	velocity = Vector2.ZERO
 	is_dead = true
 	$AttackCooldown.stop()
 	animation.stop()
 	animation.play("player_death")
-	
+
 
 # Triggered when player collects sword from dispencer
 func _on_upgrade_sword():
