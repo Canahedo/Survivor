@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bgjqpolvelvxu"]
+[gd_scene load_steps=51 format=3 uid="uid://bgjqpolvelvxu"]
 
 [ext_resource type="Script" path="res://Scripts/Logbert.gd" id="1_nkmbn"]
 [ext_resource type="Texture2D" uid="uid://6tsyaldvu81u" path="res://Assets/gfx/log.png" id="2_hd1t1"]
@@ -252,7 +252,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_wgpn4"]
 resource_name = "wake"
 length = 0.4
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -410,189 +409,11 @@ _data = {
 "walk_up": SubResource("Animation_rbgba")
 }
 
-[sub_resource type="Animation" id="Animation_tm1cm"]
-resource_name = "sleep"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"wake"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1t1tu"]
+animation = &"sleep"
 
-[sub_resource type="Animation" id="Animation_5awmh"]
-resource_name = "wake"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"wake"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_7lrwh"]
-resource_name = "walk_down"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_down"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_lsnvc"]
-resource_name = "walk_left"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_left"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_ad1p8"]
-resource_name = "walk_right"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_right"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_uxn8m"]
-resource_name = "walk_up"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_up"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nevq"]
-_data = {
-"sleep": SubResource("Animation_tm1cm"),
-"wake": SubResource("Animation_5awmh"),
-"walk_down": SubResource("Animation_7lrwh"),
-"walk_left": SubResource("Animation_lsnvc"),
-"walk_right": SubResource("Animation_ad1p8"),
-"walk_up": SubResource("Animation_uxn8m")
-}
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jl0j7"]
+animation = &"wake"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4nwjp"]
 animation = &"walk_down"
@@ -617,13 +438,26 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_fwb8e")
 blend_point_3/pos = Vector2(-1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rj6b8"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4biqa"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nc2fo"]
+advance_mode = 2
+advance_expression = "is_alert"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2dqf"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u0wom"]
+states/Sleep/node = SubResource("AnimationNodeAnimation_1t1tu")
+states/Sleep/position = Vector2(357, 100)
+states/Start/position = Vector2(131, 93)
+states/Wake/node = SubResource("AnimationNodeAnimation_jl0j7")
+states/Wake/position = Vector2(521, 86)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_phnam")
-states/Walk/position = Vector2(404, 92)
-transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_rj6b8")]
+states/Walk/position = Vector2(712, 100)
+transitions = ["Wake", "Walk", SubResource("AnimationNodeStateMachineTransition_4biqa"), "Sleep", "Wake", SubResource("AnimationNodeStateMachineTransition_nc2fo"), "Start", "Sleep", SubResource("AnimationNodeStateMachineTransition_s2dqf")]
 graph_offset = Vector2(-147, -130)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_omunj"]
@@ -654,7 +488,7 @@ script = ExtResource("1_nkmbn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_35juf")
-animation = &"walk_down"
+animation = &"sleep"
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -663,11 +497,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../AnimationPlayer")
-libraries = {
-"": SubResource("AnimationLibrary_4nevq")
-}
 tree_root = SubResource("AnimationNodeBlendTree_lj26o")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/Walk/blend_position = Vector2(0, 0)
 parameters/TimeScale/scale = 1.0
 
