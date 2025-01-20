@@ -5,13 +5,17 @@ class_name Monster
 # Node References
 @onready var player: Player = get_node("/root/Main/Player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var nav_refresh: Timer = $NavRefresh
 
 
+# If _ready() function is overwritten on inherited script, ensure to keep delay_physics()
 func _ready() -> void:
+	self.max_speed = 50
+	delay_physics()
 
-	max_speed = 0 # debug, was 50
 
-	#animation_tree.active = true #Need to create anim tree
+# Pauses physics processing until fully set up
+func delay_physics() -> void:
 	set_physics_process(false)
 	await get_tree().process_frame
 	get_path_to_player()
@@ -20,8 +24,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var path_direction: Vector2 = to_local(nav_agent.get_next_path_position()).normalized()
-	velocity += (path_direction * accel * delta)
-	velocity = velocity.limit_length(max_speed)
+	self.velocity += (path_direction * accel * delta)
+	self.velocity = velocity.limit_length(max_speed)
 	var _collided: bool = move_and_slide()
 
 

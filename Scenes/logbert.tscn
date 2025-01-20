@@ -1,6 +1,6 @@
-[gd_scene load_steps=48 format=3 uid="uid://bgjqpolvelvxu"]
+[gd_scene load_steps=54 format=3 uid="uid://bgjqpolvelvxu"]
 
-[ext_resource type="Script" path="res://Scripts/logbert.gd" id="1_nkmbn"]
+[ext_resource type="Script" path="res://Scripts/Logbert.gd" id="1_nkmbn"]
 [ext_resource type="Texture2D" uid="uid://6tsyaldvu81u" path="res://Assets/gfx/log.png" id="2_hd1t1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7a5s"]
@@ -594,13 +594,42 @@ _data = {
 "walk_up": SubResource("Animation_uxn8m")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4nwjp"]
+animation = &"walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8esev"]
+animation = &"walk_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y5heo"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fwb8e"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_phnam"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_4nwjp")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_8esev")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_y5heo")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_fwb8e")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rj6b8"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u0wom"]
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_phnam")
+states/Walk/position = Vector2(404, 92)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_rj6b8")]
 graph_offset = Vector2(-147, -130)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_omunj"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lj26o"]
-graph_offset = Vector2(-745, 29)
+graph_offset = Vector2(-616, 57)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_u0wom")
 nodes/StateMachine/position = Vector2(-360, 180)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_omunj")
@@ -625,7 +654,7 @@ script = ExtResource("1_nkmbn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_35juf")
-animation = &""
+animation = &"walk_down"
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -639,6 +668,7 @@ libraries = {
 "": SubResource("AnimationLibrary_4nevq")
 }
 tree_root = SubResource("AnimationNodeBlendTree_lj26o")
+parameters/StateMachine/Walk/blend_position = Vector2(0, 0)
 parameters/TimeScale/scale = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -649,7 +679,7 @@ shape = SubResource("CircleShape2D_31a06")
 target_desired_distance = 15.0
 simplify_path = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NavRefresh" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.25
 autostart = true
@@ -662,5 +692,5 @@ collision_mask = 8
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_p3b8p")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NavRefresh" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

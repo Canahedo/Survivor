@@ -39,7 +39,7 @@ func _on_logbert_spawn_timer_timeout() -> void:
 func spawn_logbert() -> void:
 	var spawn_count: int = rng.randi_range(1,logbert_spawn_max)
 	for n: int in range(0,spawn_count):
-		var logbert_instance: Monster = logbert_scene.instantiate()
+		var logbert_instance: Logbert = logbert_scene.instantiate()
 
 		# Choose Spawn Location
 		var spawn_location: Vector2
