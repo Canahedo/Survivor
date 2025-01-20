@@ -32,4 +32,4 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 
 
 func collect() -> void:
-	Messenger.SWORD_UPGRADED.emit()
+	Messenger.SWORD_COLLECTED.emit()

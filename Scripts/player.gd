@@ -16,7 +16,8 @@ var input: Vector2 = Vector2.DOWN
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var _connections: int = Messenger.PLAYER_KILLED.connect(_on_player_killed)
-	_connections += Messenger.SWORD_UPGRADED.connect(_on_upgrade_sword)
+	_connections += Messenger.SWORD_COLLECTED.connect(_on_upgrade_sword)
+	_connections += Messenger.PLAYER_WON.connect(_on_player_win)
 	animation_tree.active = true
 	animation_tree.set("parameters/TimeScale/scale", 1.0)
 
@@ -84,13 +85,22 @@ func _on_i_frames_timeout() -> void:
 	self.has_iframes = false
 
 
-# Triggered when player hits 0 health
-func _on_player_killed() -> void:
+func end_game() -> void:
 	velocity = Vector2.ZERO
-	self.is_dead = true
 	atk_cooldown.stop()
 	animation.stop()
+
+
+# Triggered when player hits 0 health
+func _on_player_killed() -> void:
+	end_game()
+	self.is_dead = true
 	animation.play("player_death")
+
+
+func _on_player_win() -> void:
+	end_game()
+	self.is_dead = true
 
 
 # Triggered when player collects sword from dispencer
