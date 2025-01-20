@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=4 uid="uid://ceptnlo4fo0y0"]
 
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_oag41"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_oag41"]
 [ext_resource type="PackedScene" uid="uid://dnltq0xquebi1" path="res://Scenes/player.tscn" id="2_twbt0"]
 [ext_resource type="PackedScene" uid="uid://c64itn4vnqpqs" path="res://Scenes/dispenser.tscn" id="3_2ifrt"]
 [ext_resource type="PackedScene" uid="uid://cltkf8gl80trg" path="res://Scenes/pause_menu.tscn" id="3_irbp1"]
-[ext_resource type="Script" path="res://Scripts/logbert_control.gd" id="3_q3tes"]
+[ext_resource type="Script" path="res://Scripts/monster_spawner.gd" id="3_q3tes"]
 [ext_resource type="PackedScene" uid="uid://bxa12jcginjhu" path="res://Scenes/hud.tscn" id="5_am5jt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_u63s5"]
@@ -1177,15 +1177,16 @@ tile_set = SubResource("TileSet_3lveg")
 position = Vector2(308, 166)
 collision_mask = 21
 
-[node name="LogbertControl" type="Node2D" parent="."]
+[node name="MonsterSpawner" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("3_q3tes")
+spawn_selector = 2
 
-[node name="LogbertSpawnTimer" type="Timer" parent="LogbertControl"]
+[node name="LogbertSpawnTimer" type="Timer" parent="MonsterSpawner"]
 process_callback = 0
 wait_time = 5.0
 autostart = true
 
 [node name="Dispenser" parent="." instance=ExtResource("3_2ifrt")]
 
-[connection signal="timeout" from="LogbertControl/LogbertSpawnTimer" to="LogbertControl" method="_on_logbert_spawn_timer_timeout"]
+[connection signal="timeout" from="MonsterSpawner/LogbertSpawnTimer" to="MonsterSpawner" method="_on_logbert_spawn_timer_timeout"]

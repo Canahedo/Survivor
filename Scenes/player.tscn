@@ -1,6 +1,6 @@
 [gd_scene load_steps=101 format=3 uid="uid://dnltq0xquebi1"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_2r2iy"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_2r2iy"]
 [ext_resource type="Texture2D" uid="uid://2440l4gfhbuc" path="res://Assets/gfx/character_no_weapon.png" id="2_7lt6f"]
 [ext_resource type="Texture2D" uid="uid://cof4qsmqxggtt" path="res://Assets/gfx/character.png" id="2_wsq14"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://ulrnl5vfkj2w" path="res://Animations/player_anim_states.tres" id="4_wfea3"]
@@ -1285,7 +1285,7 @@ script = ExtResource("1_2r2iy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_w4365")
-animation = &"idle_left"
+animation = &"idle_down"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1295,12 +1295,13 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 root_node = NodePath(".")
 tree_root = SubResource("AnimationNodeBlendTree_31gxe")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/AnimationNodeStateMachine/Attack/blend_position = Vector2(0, 0)
-parameters/AnimationNodeStateMachine/Idle/blend_position = Vector2(0, 0)
+parameters/AnimationNodeStateMachine/Idle/blend_position = Vector2(-0.00244498, 0.0765661)
 parameters/AnimationNodeStateMachine/Walk/blend_position = Vector2(0, 0)
 parameters/TimeScale/scale = 1.0
 

@@ -31,17 +31,17 @@ func _physics_process(delta: float) -> void:
 
 
 # Get directional input from player, returned as normalized Vector2
-func get_input() -> Vector2i:
+func get_input() -> Vector2:
 	input.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"))
 	input.y = (Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 	return input.normalized()
 
 
 # Update player velocity based on input, accounting for acceleration and friction
-func update_player_velocity(delta: float, direction: Vector2i) -> void:
+func update_player_velocity(delta: float, direction: Vector2) -> void:
 
 	# If input is not ZERO, set direction and accelerate up to max speed
-	if direction != Vector2i.ZERO:
+	if direction != Vector2.ZERO:
 		self.dir_facing = direction
 		self.velocity += (direction * accel * delta)
 		self.velocity = self.velocity.limit_length(max_speed)
