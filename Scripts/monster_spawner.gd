@@ -22,7 +22,6 @@ const logberts_per_cycle: float = 5.0 # How many Logberts spawn before the coold
 
 
 func _ready() -> void:
-	print(spawn_selector)
 	pass
 	#rng.randomize()
 

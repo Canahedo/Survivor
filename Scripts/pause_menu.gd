@@ -20,5 +20,5 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
+	var _restart_result: int = get_tree().reload_current_scene()
 	toggle_pause()
