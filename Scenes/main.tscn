@@ -1151,16 +1151,16 @@ script = ExtResource("1_ynat5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
+z_index = 4095
+mouse_filter = 2
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_irbp1")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("5_am5jt")]
-z_index = 4095
-mouse_filter = 2
 
 [node name="EnemyNavRegion" type="NavigationRegion2D" parent="."]
 z_index = -4001
